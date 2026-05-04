@@ -5,11 +5,18 @@
   "compilerOptions": {
     // Extra safety for array and object lookups, but may have false positives.
     "noUncheckedIndexedAccess": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "types": ["vite/client"],
 
-    // Path mapping for cleaner imports.
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
+
+    "strict": true,
+    "skipLibCheck": true,
+    // Path mapping for cleaner imports.
 
     // `vue-tsc --build` produces a .tsbuildinfo file for incremental type-checking.
     // Specified here to keep it out of the root directory.

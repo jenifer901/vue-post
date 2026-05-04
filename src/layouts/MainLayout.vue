@@ -1,14 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import AppHeader from '@/components/shared/AppHeader.vue'
+</script>
 
 <template>
   <div>
-    <!--  ocultas header en login -->
-    <header>
-      <h1>Mi App</h1>
-    </header>
-
-    <main>
-      <router-view />
-    </main>
+    <AppHeader />
+    <router-view />
   </div>
 </template>
