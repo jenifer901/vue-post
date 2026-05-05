@@ -3,52 +3,53 @@
     <!-- form -->
     <form class="space-y-5" @submit.prevent="onSubmit">
       <!-- usuario -->
-      <div class="flex flex-col gap-1">
-        <p class="text-xs font-medium text-gray-500">
-          {{ $t('LOGIN.USER') }}
-        </p>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">
+            {{ $t('LOGIN.USER') }}
+          </span>
+        </label>
 
         <input
           v-model="form.name"
           type="text"
           :placeholder="$t('LOGIN.USER_INPUT')"
-          class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="input input-bordered w-full"
         />
-        <p v-if="errors.name" class="text-red-500 text-xs">{{ errors.name }}</p>
+
+        <span v-if="errors.name" class="text-error text-xs mt-1">
+          {{ errors.name }}
+        </span>
       </div>
 
       <!-- contraseña -->
-      <div class="flex flex-col gap-1">
-        <p class="text-xs font-medium text-gray-500">
-          {{ $t('LOGIN.PASSWORD') }}
-        </p>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">
+            {{ $t('LOGIN.PASSWORD') }}
+          </span>
+        </label>
 
         <input
           v-model="form.password"
           type="password"
           :placeholder="$t('LOGIN.PASSWORD_INPUT')"
-          class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="input input-bordered w-full"
         />
-        <p v-if="errors.password" class="text-red-500 text-xs">{{ errors.password }}</p>
+
+        <span v-if="errors.password" class="text-error text-xs mt-1">
+          {{ errors.password }}
+        </span>
       </div>
 
       <!-- error -->
-      <p v-if="error" class="text-sm text-red-500 text-center">
+      <div v-if="error" class="alert alert-error py-2 text-sm">
         {{ $t('LOGIN.CREDENTIAL_ERROR') }}
-      </p>
+      </div>
 
       <!-- botón -->
-      <button
-        type="submit"
-        class="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2.5 rounded-lg transition"
-        :disabled="!isValid"
-        :class="
-          isValid ? 'bg-blue-600 text-white' : 'bg-gray-200 text-slate-700 hover:bg-slate-100'
-        "
-      >
-        <span v-if="loading" class="animate-pulse">
-          {{ $t('STATE.ACCESSING') }}
-        </span>
+      <button type="submit" class="btn btn-primary w-full" :disabled="!isValid || loading">
+        <span v-if="loading" class="loading loading-spinner"></span>
 
         <span v-else>
           {{ $t('LOGIN.ACCESS') }}

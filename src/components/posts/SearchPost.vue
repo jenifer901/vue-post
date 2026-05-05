@@ -6,7 +6,7 @@ const store = usePostsStore()
 
 <template>
   <input
-    class="border-gray-300 bg-gray-200 border rounded-lg px-3 py-2 text-sm hover:border-gray-400 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+    class="input input-sm bg-gray-200 border-gray-300 text-sm hover:border-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
     type="text"
     :placeholder="$t('HEADER.SEARCH')"
     v-model="store.searchInput"

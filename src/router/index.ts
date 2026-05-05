@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-const MainLayout = () => import('@/layouts/MainLayout.vue')
+const MainLayout = () => import('@/shared/layouts/MainLayout.vue')
 const Login = () => import('@/views/LoginView.vue')
 const Posts = () => import('@/views/PostsView.vue')
 const PostDetail = () => import('@/views/PostsDetailView.vue')
@@ -56,7 +56,6 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
-
 
 // guards autentication, isOwner in is-owner.guard.ts (beforeEnter in routers)
 router.beforeEach((to, from, next) => {

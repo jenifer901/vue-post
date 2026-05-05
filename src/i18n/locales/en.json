@@ -1,9 +1,10 @@
 {
   "HEADER": {
     "SEARCH": "Search posts...",
-    "EXIT": "⎋ Exit",
+    "EXIT": "Exit",
     "LANGUAGE_ES": "ES",
-    "LANGUAGE_EN": "EN"
+    "LANGUAGE_EN": "EN",
+    "LOGOUT_CONFIRM": "Are you sure you want to log out of the application?"
   },
   "LOGIN": {
     "WELCOME": "Welcome",
