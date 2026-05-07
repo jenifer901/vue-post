@@ -1,14 +1,24 @@
 <template>
-  <div class="overflow-x-auto w-full p-10">
-    <p>{{ $t('FORM_POST.LIST') }}</p>
+  <div class="overflow-x-auto w-full p-15 pt-3">
+    <div class="pb-2">
+      <h1 class="text-lg font-semibold text-base-content">{{ $t('FORM_POST.LIST') }}</h1>
+    </div>
 
-    <!--Filters-->
+    <div class="flex justify-between items-start mb-2">
+      <!--Filters-->
+      <FiltersPosts :users="authors" :tags="tags" :loading="loadingSelect" />
 
-    <!--Result view-->
+      <span class="text-xs text-gray-400">
+        <!--Result view-->
+        <div class="pt-4">
+          <h3>{{ $t('RESULTS.SHOWING', { shown: 10, total: totalItems }) }}</h3>
+        </div>
+      </span>
+    </div>
 
     <!-- Loading -->
-    <div v-if="loading" class="w-full">
-      <p>{{ $t('STATE.LOADING') }}</p>
+    <div v-if="loading">
+      <LoadingSpinner size="lg" :text="$t('STATE.LOADING')" />
     </div>
 
     <!--Pots-->
@@ -25,6 +35,23 @@
       </div>
     </div>
     <!-- Pagination -->
+    <div class="flex justify-between items-center mt-8 text-sm text-gray-600">
+      <button
+        @click="prevPage"
+        :disabled="!hasPrev"
+        class="px-3 py-1 rounded bg-gray-100 disabled:opacity-50"
+      >
+        {{ $t('BUTTON.PREVIOUS') }}
+      </button>
+      <PaginationPosts :totalPages="totalPages" :currentPage="currentPage" @pageChange="goToPage" />
+      <button
+        @click="nextPage"
+        :disabled="!hasNext"
+        class="px-3 py-1 rounded bg-gray-100 disabled:opacity-50"
+      >
+        {{ $t('BUTTON.NEXT') }}
+      </button>
+    </div>
   </div>
   <!-- Add button float -->
   <FabButton @click="goToAddPost">
@@ -34,23 +61,28 @@
 
 <script setup lang="ts">
 import CardPost from '@/components/posts/CardPost.vue'
-import type { Post } from '@/models/post.model'
+import FiltersPosts from '@/components/posts/FiltersPosts.vue'
+import PaginationPosts from '@/components/posts/PaginationPosts.vue'
+import { usePostsPage } from '@/composables/usePostsPage'
 import FabButton from '@/shared/components/FabButton.vue'
+import LoadingSpinner from '@/shared/components/loadingSpinner.vue'
 import AddCircle from '@/shared/icons/addCircle.vue'
-import { usePostsStore } from '@/stores/posts'
-import { useRouter } from 'vue-router'
-const router = useRouter()
 
-const postsStore = usePostsStore()
-
-const posts = postsStore.posts
-const loading = postsStore.loading
-
-const goToPost = (post: Post) => {
-  router.push(`/post/${post.id}`)
-}
-
-const goToAddPost = () => {
-  router.push('/post/new')
-}
+const {
+  posts,
+  totalPages,
+  loading,
+  hasPrev,
+  hasNext,
+  currentPage,
+  totalItems,
+  authors,
+  tags,
+  loadingSelect,
+  prevPage,
+  nextPage,
+  goToPage,
+  goToPost,
+  goToAddPost,
+} = usePostsPage()
 </script>

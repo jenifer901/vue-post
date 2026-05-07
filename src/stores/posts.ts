@@ -4,38 +4,8 @@ import axios, { type AxiosRequestConfig } from 'axios'
 import { useAuthStore } from '@/stores/auth'
 import { api } from '@/services/api'
 import type { Post } from '@/models/post.model'
+import type { PostsApiResponse, PostsQueryParams, PostsWhereFilter } from '@/models/posts.types'
 
-// tipos
-type WhereFilter = {
-    userId?: { eq: string }
-    tags?: { contains: string }
-    or?: Array<{
-        title?: { contains: string }
-        body?: { contains: string }
-    }>
-}
-
-type Params = {
-    _page: number
-    _per_page: number
-    _sort: string
-    _embed: string
-    _where?: string
-}
-
-/*type Post = {
-    id: number
-    title: string
-    body: string
-    userId: string
-    tags?: string[]
-}*/
-
-type PostsResponse = {
-    data: Post[]
-    pages: number
-    items: number
-}
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -61,20 +31,21 @@ export const usePostsStore = defineStore('posts', () => {
     //  computed
     const hasNext = computed(() => page.value < totalPages.value)
     const hasPrev = computed(() => page.value > 1)
+    const currentPage = computed(() => page.value)
 
     //  fetch (equivalente a httpResource)
     const fetchPosts = async () => {
         loading.value = true
 
         try {
-            const params: Params = {
+            const params: PostsQueryParams = {
                 _page: page.value,
                 _per_page: 10,
                 _sort: '-views',
                 _embed: 'user',
             }
 
-            const where: WhereFilter = {}
+            const where: PostsWhereFilter = {}
 
             if (filters.value.userId) {
                 where.userId = { eq: String(filters.value.userId) }
@@ -97,12 +68,11 @@ export const usePostsStore = defineStore('posts', () => {
 
             const config: AxiosRequestConfig = { params }
 
-            const res = await api.get<PostsResponse>('/posts', config)
+            const res = await api.get<PostsApiResponse>('/posts', config)
 
             posts.value = res.data.data
             totalPages.value = res.data.pages
             totalItems.value = res.data.items
-            console.log(res.data)
         } catch (e) {
             console.error(e)
         } finally {
@@ -111,7 +81,9 @@ export const usePostsStore = defineStore('posts', () => {
     }
 
     //  reactivo (como signals)
-    watch([page, filters, searchInput], fetchPosts, { deep: true })
+    watch([page, filters, searchInput], fetchPosts, {
+        deep: true
+    })
 
     //  actions
     const nextPage = () => {
@@ -154,9 +126,6 @@ export const usePostsStore = defineStore('posts', () => {
         page.value = 1
     }
 
-    //  init
-    fetchPosts()
-
     return {
         // state
         posts,
@@ -165,11 +134,12 @@ export const usePostsStore = defineStore('posts', () => {
         loading,
         searchInput,
         addSuccess,
+        filters,
 
         // computed
         hasNext,
         hasPrev,
-        currentPage: page,
+        currentPage,
 
         // actions
         nextPage,
@@ -178,6 +148,6 @@ export const usePostsStore = defineStore('posts', () => {
         addPost,
         resetAddState,
         resetFilters,
-        setFilter,
+        setFilter
     }
 })
