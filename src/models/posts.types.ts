@@ -23,3 +23,9 @@ export type PostsApiResponse = {
     pages: number
     items: number
 }
+
+export type CreatePostDto = {
+    title: string
+    body: string
+    tags?: string[]
+}

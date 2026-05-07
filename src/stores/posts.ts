@@ -4,7 +4,7 @@ import axios, { type AxiosRequestConfig } from 'axios'
 import { useAuthStore } from '@/stores/auth'
 import { api } from '@/services/api'
 import type { Post } from '@/models/post.model'
-import type { PostsApiResponse, PostsQueryParams, PostsWhereFilter } from '@/models/posts.types'
+import type { CreatePostDto, PostsApiResponse, PostsQueryParams, PostsWhereFilter } from '@/models/posts.types'
 
 
 const API_URL = import.meta.env.VITE_API_URL
@@ -98,13 +98,23 @@ export const usePostsStore = defineStore('posts', () => {
         page.value = p
     }
 
-    const addPost = async (post: Omit<Post, 'id'>) => {
-        await axios.post(`${API_URL}/posts`, {
+    const addPost = async (post: CreatePostDto) => {
+        await api.post('/posts', {
+            ...post,
+            userId: authStore.userId,
+            createdAt: new Date().toISOString(),
+        })
+
+        addSuccess.value = true
+        fetchPosts()
+    }
+
+    const updatePost = async (id: number, post: CreatePostDto) => {
+        await api.put(`/posts/${id}`, {
             ...post,
             userId: authStore.userId,
         })
 
-        addSuccess.value = true
         fetchPosts()
     }
 
@@ -148,6 +158,7 @@ export const usePostsStore = defineStore('posts', () => {
         addPost,
         resetAddState,
         resetFilters,
-        setFilter
+        setFilter,
+        updatePost
     }
 })

@@ -4,8 +4,7 @@ const MainLayout = () => import('@/shared/layouts/MainLayout.vue')
 const Login = () => import('@/views/LoginView.vue')
 const Posts = () => import('@/views/PostsView.vue')
 const PostDetail = () => import('@/views/PostsDetailView.vue')
-const PostEdit = () => import('@/views/PostsEditView.vue')
-const PostCreate = () => import('@/views/PostsCreateView.vue')
+const FormPost = () => import('@/views/FormPost.vue')
 
 const routes = [
   {
@@ -25,8 +24,8 @@ const routes = [
         meta: { requiresAuth: true },
       },
       {
-        path: 'posts/new',
-        component: PostCreate,
+        path: 'post/new',
+        component: FormPost,
         name: 'new',
         meta: { requiresAuth: true },
       },
@@ -40,7 +39,7 @@ const routes = [
       {
         path: 'posts/:id/edit',
         name: 'edit',
-        component: PostEdit,
+        component: FormPost,
         meta: { requiresAuth: true },
       },
       // redirect base

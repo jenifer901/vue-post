@@ -22,7 +22,8 @@
     "LOADING_COMMENTS": "Loading comments...",
     "ERROR_COMMENTS": "Error loading comments",
     "LOADING": "Loading...",
-    "ACCESSING": "Accessing..."
+    "ACCESSING": "Accessing...",
+    "SAVE": "save..."
   },
   "FILTER": {
     "AUTHORS": "Authors",

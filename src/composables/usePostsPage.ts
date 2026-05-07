@@ -26,7 +26,7 @@ export const usePostsPage = () => {
 
     const { authors, tags, loading: loadingSelect } = storeToRefs(filtersStore)
 
-    const { prevPage, nextPage } = postsStore
+    const { prevPage, nextPage, goToPage } = postsStore
 
     // Initialize state from URL (page, filters, search)
     onMounted(() => {
@@ -34,7 +34,7 @@ export const usePostsPage = () => {
 
         const query = route.query
 
-        postsStore.goToPage(Number(query.page) || 1)
+        goToPage(Number(query.page) || 1)
 
         if (!query.userId && !query.tag && !query.search) {
             postsStore.resetFilters()
@@ -78,9 +78,6 @@ export const usePostsPage = () => {
         router.push('/post/new')
     }
 
-    const goToPage = (page: number) => {
-        postsStore.goToPage(page)
-    }
 
     return {
         // state

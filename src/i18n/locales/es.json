@@ -22,7 +22,8 @@
     "LOADING_COMMENTS": "Cargando comentarios....",
     "ERROR_COMMENTS": "Error cargar comentarios",
     "LOADING": "Cargando...",
-    "ACCESSING": "Accediendo...."
+    "ACCESSING": "Accediendo....",
+    "SAVE": "Guardando..."
   },
   "FILTER": {
     "AUTHORS": "Autores",
@@ -59,7 +60,7 @@
   "FORM_POST": {
     "TITLE_POST": "Título del post...",
     "BODY_POST": "Contenido del post...",
-    "TAGS_POST": "angular, frontend, signals",
+    "TAGS_POST": "# tags, separadas por coma",
     "REQUIRED_TITLE": "Título requerido",
     "REQUIRED_BODY": "Contenido requerido",
     "REQUIRED_TAGS": "Tags requeridos",

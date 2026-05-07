@@ -24,6 +24,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue'
 import { usePostsStore } from '@/stores/posts'
+import LoadingSpinner from '@/shared/components/loadingSpinner.vue'
 
 type User = {
   id: string
