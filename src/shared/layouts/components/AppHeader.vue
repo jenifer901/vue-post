@@ -45,6 +45,7 @@ const confirmLogout = () => {
 
       <!-- logout -->
       <button
+        type="button"
         v-if="authStore.isAuthenticated"
         class="btn btn-ghost btn-sm"
         @click="showLogoutModal = true"

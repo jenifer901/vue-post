@@ -42,7 +42,8 @@
 <script setup lang="ts">
 import type { Post } from '@/models/post.model'
 import { useI18n } from 'vue-i18n'
-import { formatDateShort } from '@/utils/date'
+import { useTimeAgo } from '@/utils/date'
+const { formatDateShort } = useTimeAgo()
 const { locale } = useI18n()
 
 defineProps<{

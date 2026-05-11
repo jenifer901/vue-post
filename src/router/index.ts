@@ -12,6 +12,10 @@ const routes = [
     component: MainLayout,
     children: [
       {
+      path: '',
+      redirect: '/posts'
+    },
+      {
         path: 'login',
         component: Login,
         name: 'login',
@@ -33,11 +37,10 @@ const routes = [
         path: 'post/:id',
         component: PostDetail,
         name: 'post',
-        props: true,
         meta: { requiresAuth: true },
       },
       {
-        path: 'posts/:id/edit',
+        path: 'post/:id/edit',
         name: 'edit',
         component: FormPost,
         meta: { requiresAuth: true },
@@ -57,22 +60,22 @@ const router = createRouter({
 })
 
 // guards autentication, isOwner in is-owner.guard.ts (beforeEnter in routers)
-router.beforeEach((to, from, next) => {
+router.beforeEach((to) => {
   const token = localStorage.getItem('token')
 
   // si necesita auth y no hay token
   if (to.meta.requiresAuth && !token) {
-    next('/login')
-    return
+
+    return { path: '/login'}
   }
 
   // si ya está logueado y va a login
   if (to.path === '/login' && token) {
-    next('/posts')
-    return
+
+    return {path: '/posts'}
   }
 
-  next()
+  return true
 })
 
 export default router

@@ -15,6 +15,7 @@ const isActive = (lang: 'es' | 'en') => {
 <template>
   <div class="join">
     <button
+      type="button"
       class="join-item btn btn-sm rounded-l-full"
       :class="isActive('es') ? 'btn-primary' : ''"
       @click="changeLang('es')"
@@ -23,6 +24,7 @@ const isActive = (lang: 'es' | 'en') => {
     </button>
 
     <button
+      type="button"
       class="join-item btn btn-sm rounded-r-full"
       :class="isActive('en') ? 'btn-primary' : ''"
       @click="changeLang('en')"

@@ -1,22 +1,50 @@
-// src/utils/date.ts
+import { useI18n } from 'vue-i18n'
 
-export const formatDateShort = (date: string, locale = 'en-ES') => {
-    return new Date(date)
-        .toLocaleDateString(locale, {
-            month: 'short',
-            year: 'numeric',
-        })
-        .toUpperCase()
-}
+export const useTimeAgo = () => {
+  const { t } = useI18n()
 
-export const formatDateRelative = (date: string, locale = 'es-ES') => {
-    const diff = Date.now() - new Date(date).getTime()
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+  const formatDateShort = (date: string, locale = 'en-ES') => {
+    return new Date(date).toLocaleDateString(locale, {
+      month: 'short',
+      year: 'numeric',
+    })
+  }
 
-    if (days === 0) return locale === 'es-ES' ? 'HOY' : 'TODAY'
-    if (days === 1) return locale === 'es-ES' ? 'AYER' : 'YESTERDAY'
+  const formatTimeAgo = (dateString: string) => {
+    const now = new Date()
+    const date = new Date(dateString)
 
-    return locale === 'es-ES'
-        ? `HACE ${days} DÍAS`
-        : `${days} DAYS AGO`
+    const diffMs = now.getTime() - date.getTime()
+
+    const minutes = Math.floor(diffMs / (1000 * 60))
+    const hours = Math.floor(diffMs / (1000 * 60 * 60))
+    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+
+    // minutes
+    if (minutes < 60) {
+      return t('TIME.MIN', { count: minutes })
+    }
+
+    // hours
+    if (hours < 24) {
+      return t('TIME.HOUR', { count: hours })
+    }
+
+    // days
+    if (days < 30) {
+      return t('TIME.DAY', { count: days })
+    }
+
+    // months
+    const months = Math.floor(days / 30)
+    if (months < 12) {
+      return t('TIME.MONTH', { count: months })
+    }
+
+    // years
+    const years = Math.floor(months / 12)
+    return t('TIME.YEAR', { count: years })
+  }
+
+  return { formatTimeAgo, formatDateShort }
 }

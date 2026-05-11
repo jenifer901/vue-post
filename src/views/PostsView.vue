@@ -37,6 +37,7 @@
     <!-- Pagination -->
     <div class="flex justify-between items-center mt-8 text-sm text-gray-600">
       <button
+        type="button"
         @click="prevPage"
         :disabled="!hasPrev"
         class="px-3 py-1 rounded bg-gray-100 disabled:opacity-50"
@@ -45,6 +46,7 @@
       </button>
       <PaginationPosts :totalPages="totalPages" :currentPage="currentPage" @pageChange="goToPage" />
       <button
+        type="button"
         @click="nextPage"
         :disabled="!hasNext"
         class="px-3 py-1 rounded bg-gray-100 disabled:opacity-50"

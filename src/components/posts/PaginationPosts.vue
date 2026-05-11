@@ -3,6 +3,7 @@
     <template v-for="(item, index) in items" :key="index">
       <!-- página -->
       <button
+        type="button"
         v-if="item.type === 'page'"
         @click="selectPage(item.value!)"
         :class="['px-3 py-1 border rounded transition', pageClasses(item.value!)]"

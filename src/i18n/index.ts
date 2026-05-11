@@ -3,11 +3,11 @@ import es from './locales/es.json'
 import en from './locales/en.json'
 
 export const i18n = createI18n({
-    legacy: false,
-    locale: 'es',
-    fallbackLocale: 'en',
-    messages: {
-        es,
-        en,
-    },
+  legacy: false,
+  locale: 'es',
+  fallbackLocale: 'en',
+  messages: {
+    es,
+    en,
+  },
 })

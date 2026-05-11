@@ -2,7 +2,7 @@
   <div v-if="loading">
     <LoadingSpinner />
   </div>
-  <div v-else class="flex items-center gap-3 mb-4">
+  <div v-else class="flex items-center gap-4 mb-4">
     <!-- Authors -->
     <select v-model="localUserId" class="select select-bordered select-sm">
       <option value="">Autores</option>

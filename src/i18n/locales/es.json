@@ -65,15 +65,22 @@
     "REQUIRED_BODY": "Contenido requerido",
     "REQUIRED_TAGS": "Tags requeridos",
     "NEW_POST": "Nuevo post",
-    "EDIT_POST": "Crear post",
+    "EDIT_POST": "Editar post",
     "TITLE": "TITULO",
     "BODY": "CONTENIDO",
     "TAGS": "TAGS",
     "NEW": "Escribe tu post",
-    "EDIT": "Editar post",
+    "EDIT": "Editar tu post",
     "LIST": "Lista de post"
   },
   "RESULTS": {
     "SHOWING": "Mostrando {shown} de {total} resultados"
+  },
+  "TIME": {
+    "DAY": "{count} día | {count} días",
+    "MONTH": "{count} mes | {count} meses",
+    "YEAR": "{count} año | {count} años",
+    "HOUR": "{count} h",
+    "MIN": "{count} min"
   }
 }

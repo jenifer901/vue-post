@@ -31,17 +31,20 @@ const onConfirm = () => {
       </p>
 
       <div class="modal-action border-t border-t-gray-500 pt-2">
-        <button class="btn" @click="modelValue = false">Cancelar</button>
+        <button type="button" class="btn" @click="modelValue = false">
+          {{ $t('BUTTON.CANCEL') }}
+        </button>
 
-        <button class="btn btn-error" @click="onConfirm" :disabled="loading">
+        <button type="button" class="btn btn-error" @click="onConfirm" :disabled="loading">
           <span v-if="loading" class="loading loading-spinner"></span>
-          <span v-else>Aceptar</span>
+          <span v-else>{{ $t('BUTTON.ACCEPT') }}</span>
         </button>
       </div>
     </div>
-
+    <div class="modal-backdrop" @click="close"></div>
+    <!--
     <form method="dialog" class="modal-backdrop" @click="close">
-      <button>close</button>
-    </form>
+      <button type="button">close</button>
+    </form>-->
   </dialog>
 </template>

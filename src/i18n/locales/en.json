@@ -75,5 +75,12 @@
   },
   "RESULTS": {
     "SHOWING": "Showing {shown} of {total} results"
+  },
+  "TIME": {
+    "DAY": "{count} día | {count} días",
+    "MONTH": "{count} mes | {count} meses",
+    "YEAR": "{count} año | {count} años",
+    "HOUR": "{count} h",
+    "MIN": "{count} min"
   }
 }
