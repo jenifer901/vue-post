@@ -5,12 +5,10 @@ import type { Comment } from '@/models/comment.model'
 import { useAuthStore } from './auth'
 
 export const useCommentsStore = defineStore('comments', () => {
-
   const comments = ref<Comment[]>([])
   const loading = ref(false)
 
   const { userId, userName } = storeToRefs(useAuthStore())
-
 
   const fetchComments = async (postId: string) => {
     if (!comments.value.length) {
@@ -30,7 +28,6 @@ export const useCommentsStore = defineStore('comments', () => {
       loading.value = false
     }
   }
-
 
   const isCommentOwner = (comment: Comment) => {
     return comment.userId === userId.value

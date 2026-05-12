@@ -12,9 +12,9 @@ const routes = [
     component: MainLayout,
     children: [
       {
-      path: '',
-      redirect: '/posts'
-    },
+        path: '',
+        redirect: '/posts',
+      },
       {
         path: 'login',
         component: Login,
@@ -65,14 +65,12 @@ router.beforeEach((to) => {
 
   // si necesita auth y no hay token
   if (to.meta.requiresAuth && !token) {
-
-    return { path: '/login'}
+    return { path: '/login' }
   }
 
   // si ya está logueado y va a login
   if (to.path === '/login' && token) {
-
-    return {path: '/posts'}
+    return { path: '/posts' }
   }
 
   return true

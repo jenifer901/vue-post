@@ -11,7 +11,6 @@ export const usePostSelectStore = defineStore('postSelect', () => {
 
   const { userId } = storeToRefs(useAuthStore())
 
-
   // FETCH POST
   const fetchPostById = async (id: string) => {
     loading.value = true

@@ -1,7 +1,7 @@
 import { useCommentsStore } from '@/stores/comments'
 import { usePostSelectStore } from '@/stores/selectPost'
 import { storeToRefs } from 'pinia'
-import { onMounted, ref, watch, watchEffect, onUnmounted } from 'vue'
+import { ref, watch, onUnmounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 type ModalObj = 'post' | 'comment'
@@ -22,24 +22,21 @@ export const usePostSelect = () => {
   const selectModal = ref<ModalObj | null>(null)
 
   const postId = route.params.id as string
- 
-  watch(
-  () => postId,
-  async (id) => {
-    if (!id) return
 
-    await Promise.all([
-      postStore.fetchPostById(id),
-      commentsStore.fetchComments(id)
-    ])
-  },
-  { immediate: true }
-)
+  watch(
+    () => postId,
+    async (id) => {
+      if (!id) return
+
+      await Promise.all([postStore.fetchPostById(id), commentsStore.fetchComments(id)])
+    },
+    { immediate: true },
+  )
 
   onUnmounted(() => {
-        postStore.clear()
-        commentsStore.clear()
-    })
+    postStore.clear()
+    commentsStore.clear()
+  })
 
   const goToEdit = () => {
     router.push(`/post/${postId}/edit`)

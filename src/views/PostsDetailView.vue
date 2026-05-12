@@ -12,7 +12,7 @@
       @delete="goToShowModal('post')"
     />
 
-    <!-- Comments -->
+    <!-- Comments-->
     <ListComments
       :comments="comments"
       :loading="loadingComments"
@@ -21,7 +21,7 @@
       @delete="(id) => goToShowModal('comment', id)"
     />
 
-    <!-- Add Comment -->
+    <!-- Add Comment-->
     <AddFormComment @submit="addComment" />
 
     <ConfirmModal

@@ -37,6 +37,7 @@
     <!-- Pagination -->
     <div class="flex justify-between items-center mt-8 text-sm text-gray-600">
       <button
+        data-test="prev-btn"
         type="button"
         @click="prevPage"
         :disabled="!hasPrev"
@@ -46,6 +47,7 @@
       </button>
       <PaginationPosts :totalPages="totalPages" :currentPage="currentPage" @pageChange="goToPage" />
       <button
+        data-test="next-btn"
         type="button"
         @click="nextPage"
         :disabled="!hasNext"
