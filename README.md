@@ -23,9 +23,6 @@ Aplicación desarrollada con Vue 3, Vite y Pinia utilizando TypeScript. Permite 
 
 ## Instalación
 
-```md
-## Instalación
-
 ```bash
 npm install
 
