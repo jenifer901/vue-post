@@ -1,54 +1,69 @@
-# posts-app-vue
+# TechPoC - Posts & Comments App
 
-This template should help get you started developing with Vue 3 in Vite.
+## Descripción
 
-## Recommended IDE Setup
+Aplicación desarrollada con Vue 3, Vite y Pinia utilizando TypeScript. Permite la gestión de posts y comentarios con autenticación básica, internacionalización y testing unitario.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+---
 
-## Recommended Browser Setup
+## Tecnologías
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- Vue 3 (Composition API)
+- Vite
+- Pinia
+- Vue Router
+- Vue I18n
+- TailwindCSS + DaisyUI
+- Axios
+- TypeScript
+- Vitest
+- Vue Test Utils
 
-## Type Support for `.vue` Imports in TS
+---
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Instalación
 
-## Customize configuration
+```md
+## Instalación
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+```bash
 npm install
-```
 
-### Compile and Hot-Reload for Development
 
-```sh
+---
+
+## Desarrollo
+
+```md
+## Desarrollo
+
+```bash
 npm run dev
-```
 
-### Type-Check, Compile and Minify for Production
 
-```sh
-npm run build
-```
+---
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## Testing
 
-```sh
-npm run test:unit
-```
+```md
+## Testing
 
-### Lint with [ESLint](https://eslint.org/)
+### Stack
 
-```sh
-npm run lint
-```
+- Vitest
+- Vue Test Utils
+- jsdom
+
+### Ejecutar tests
+
+```bash
+npm run test
+npm run test:watch
+npm run test:coverage
+
+---
+
+## Estructura del proyecto
+
+```md
+## Estructura del proyecto
